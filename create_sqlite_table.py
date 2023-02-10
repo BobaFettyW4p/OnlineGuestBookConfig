@@ -11,6 +11,8 @@ cursor.execute('''CREATE TABLE visitors (
 '''
 )
 
+cursor.execute('CREATE UNIQUE INDEX visitor_name ON visitors (name);')
+
 conn.commit()
 cursor.execute('INSERT INTO visitors VALUES ("Matthew Ivancic","first")')
 conn.commit()
