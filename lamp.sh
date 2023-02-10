@@ -1,19 +1,12 @@
 #!/bin/bash
+#install dependencies
 sudo yum update -y
+sudo yum install -y httpd httpd-devel git python3-mod_wsgi.x86_64
+sudo pip3 install flask
 
-#install MariaDB (MySQL), Apache, PHP
-#sudo amazon-linux-extras install -y lamp-mariadb10.2-php7.2 php7.2
-sudo yum install -y httpd git mod_wsgi
-
-sudo yum install python3 python3-devel ea-apache24-devel
-sudo pip3 install mod_wsgi
-
-#start apache server
+#start apache server, enable apache on startup
 sudo systemctl start httpd
 sudo systemctl enable httpd
-
-#install flask
-pip3 install flask
 
 #grant ec2-user access to add files to Apache
 sudo usermod -a -G apache ec2-user
@@ -25,12 +18,21 @@ find /var/www -type f -exec sudo chmod 0664 {} \;
 git clone https://github.com/BobaFettyW4p/OnlineGuestBook.git
 cd OnlineGuestBook/
 
-sudo mkdir /usr/local/FlaskApp
-#create sqlite database
-sudo python3 create_sqlite_table.py
+#make wsgi file executable
+sudo chmod 777 FlaskApp/app.wsgi
 
+#create log files directory
 mkdir /var/www/logs
+
+#move Flask app to location to be serviced
 mv FlaskApp /var/www/html
 
+#create database, and give ownership to the apache owner and group
+sudo chown apache:apache /var/www/html/FlaskApp
+sudo python3 create_sqlite_table.py
+sudo chown apache:apache /var/www/html/FlaskApp/database.db
+
+
+#configure apache to run app, reload apache to apply changes
 sudo mv basic-flask-app.conf /etc/httpd/conf.d
 sudo systemctl reload httpd

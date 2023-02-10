@@ -1,6 +1,6 @@
 import sqlite3
 
-conn = sqlite3.connect('/usr/local/FlaskApp/database.db')
+conn = sqlite3.connect('/var/www/html/FlaskApp/database.db')
 
 cursor = conn.cursor()
 
