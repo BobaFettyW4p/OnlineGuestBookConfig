@@ -11,8 +11,12 @@ def index():
         name = request.form['name']
         message = request.form['message']
         query = f'INSERT INTO visitors VALUES ("{name}","{message}")'
-        cursor.execute(query)
-        conn.commit()
+        
+        try:
+            cursor.execute(query)
+            conn.commit()
+        except:
+            pass
     query = 'SELECT * FROM visitors;'
     cursor.execute(query)
     entries = cursor.fetchall()
