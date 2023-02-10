@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET','POST'])
 def index():
-    conn = sqlite3.connect('database.db')
+    conn = sqlite3.connect('/var/www/html/FlaskApp/database.db')
     cursor = conn.cursor()
     if request.method == 'POST':
         name = request.form['name']
