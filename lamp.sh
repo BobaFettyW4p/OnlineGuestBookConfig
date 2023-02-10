@@ -2,8 +2,8 @@
 sudo yum update -y
 
 #install MariaDB (MySQL), Apache, PHP
-sudo amazon-linux-extras install -y lamp-mariadb10.2-php7.2 php7.2
-sudo yum install -y httpd git # mod24_wsgi
+#sudo amazon-linux-extras install -y lamp-mariadb10.2-php7.2 php7.2
+sudo yum install -y httpd git mod_wsgi
 
 sudo yum install python3 python3-devel ea-apache24-devel
 sudo pip3 install mod_wsgi
@@ -29,8 +29,8 @@ sudo mkdir /usr/local/FlaskApp
 #create sqlite database
 sudo python3 create_sqlite_table.py
 
-mkdir /var/www/html/FlaskApp
-mv FlaskApp /var/www/html/FlaskApp
+mkdir /var/www/logs
+mv FlaskApp /var/www/html
 
 sudo mv basic-flask-app.conf /etc/httpd/conf.d
 sudo systemctl reload httpd
