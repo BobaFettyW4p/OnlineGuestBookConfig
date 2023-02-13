@@ -14,3 +14,5 @@ A `flask app <https://github.com/BobaFettyW4p/OnlineGuestBook/tree/main/FlaskApp
 A `WSGI configuration file <https://github.com/BobaFettyW4p/OnlineGuestBook/blob/main/FlaskApp/app.wsgi>`_ that allows the server to utilize a production-grade WSGI server to host the flask app
 
 An `Apache configuration file <https://github.com/BobaFettyW4p/OnlineGuestBook/blob/main/basic-flask-app.conf>`_ that ensures Apache/httpd is appropriately configured to display the WSGI server
+
+a `shell script <https://github.com/BobaFettyW4p/OnlineGuestBook/blob/main/lamp.sh>`_ that is used to configure the EC2 instance
