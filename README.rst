@@ -1,4 +1,5 @@
-# OnlineGuestBook
+OnlineGuestBook
+===============
 
 This repo is used in conjunction with its `sister repo <https://github.com/BobaFettyW4p/OnlineGuestbookTerraform>`_ to create an online guestbook hosted via an EC2 instance
 
